@@ -1,36 +1,27 @@
 # Controle Safra — Coletor John Deere
 
-Página institucional do **Controle Safra** e de seu componente de integração com o **John Deere Operations Center** para uso interno da Fazenda Monte Cristo.
+Página institucional pública de apresentação do módulo de integração do Controle Safra com o John Deere Operations Center.
 
-## Página atual
-O conteúdo público está em `index.html`, publicado via GitHub Pages neste repositório. A apresentação descreve o sistema, o módulo Coletor John Deere, os dados agrícolas tratados e a finalidade privada da integração.
+## Estrutura
+- `coletor-johndeere/index.html`: página atual e principal do Coletor John Deere
+- `index.html`: redirecionamento da antiga raiz para a nova página, com `noindex`
 
-## Domínio planejado
-`https://controlesafra.com.br`
+## URLs
+- URL de pré-visualização no GitHub Pages: `https://brunohalla.github.io/coletor-monte-cristo/coletor-johndeere/`
+- URL pública solicitada: `https://www.controlesafra.com.br/coletor-johndeere/`
 
-**Não apontar o cadastro John Deere para o novo endereço antes de o domínio estar registrado, apontado via DNS, publicado no GitHub Pages e com HTTPS funcionando.**
+**A publicação no endereço personalizado requer configuração da hospedagem efetiva do domínio.** Este repositório não ativa automaticamente uma subpasta em um domínio já hospedado por outro servidor/Cloudflare. Não mudar A/AAAA/CNAME do domínio raiz ou `www` sem verificar o frontend e as APIs existentes.
 
-Para migrar o domínio:
-1. Verifique a titularidade ou registre `controlesafra.com.br` no Registro.br.
-2. Em **Settings → Pages → Custom domain**, configure `controlesafra.com.br`. Isso cria/configura o arquivo `CNAME` para publicação por branch.
-3. No provedor DNS do domínio, configure 4 registros `A` para o host `@` apontando para:
-   - `185.199.108.153`
-   - `185.199.109.153`
-   - `185.199.110.153`
-   - `185.199.111.153`
-4. Configure também `CNAME` de `www` para `brunohalla.github.io` (sem `/coletor-monte-cristo`).
-5. Após propagação e emissão do certificado, ative **Enforce HTTPS**. Verifique ambos: `https://controlesafra.com.br` e `https://www.controlesafra.com.br`.
-6. Somente então edite o Website Link no John Deere Developer Portal.
+Se o domínio estiver no GitHub Pages, use o repositório que serve a raiz de `www.controlesafra.com.br` e adicione a pasta `coletor-johndeere/` nesse repositório. Se o frontend estiver em Cloudflare Pages, publicar a pasta na build/site, ou configurar roteamento do caminho. Se o site usar servidor web/reverse proxy, disponibilizar o conteúdo estático apenas nessa rota. Não proxyar ou tornar públicos os endpoints internos.
 
-Fonte: documentação oficial GitHub Pages sobre domínio personalizado e HTTPS.
+## Cadastro John Deere Developer Portal
+Application Name: `Controle Safra - Coletor John Deere`
 
-## Dados de cadastro para John Deere Developer Portal
-- **Application Name**: Controle Safra - Coletor John Deere
-- **Website Link**: https://controlesafra.com.br (após ativação)
-- **Short Description (150–200 caracteres)**:
-  > Aplicação privada do Controle Safra para integrar dados autorizados do John Deere Operations Center, consolidando operações agrícolas, máquinas, áreas e mapas da Fazenda Monte Cristo.
-- **Modalidade**: aplicação privada para integração interna da Fazenda Monte Cristo.
+Website Link, quando acessível e com certificado HTTPS válido: `https://www.controlesafra.com.br/coletor-johndeere/`
 
-Não crie outra aplicação apenas por mudança de marca. Preserve o cadastro existente e confira **Security / Redirect URIs**, **API access** e **Connected Organizations**. Website Link e Redirect URI são informações distintas; não altere o callback do OAuth sem conferir o endereço efetivamente usado pelo Coletor.
+Short Description (186 caracteres):
+> Integração do Controle Safra com o John Deere Operations Center para coletar dados de plantio, colheita e aplicações, gerar relatórios operacionais e enviar planejamentos via Work Plans.
 
-Este repositório contém apenas a página institucional; **não inclua tokens, Client Secret, credenciais, dados da fazenda ou arquivos operacionais**.
+**Website Link não é Redirect URI do OAuth.** Manter e conferir as URLs de callback da integração antes de alterá-las.
+
+A aplicação é independente. A página não contém dados reais, credenciais ou afirmação de vínculo comercial com a John Deere.
