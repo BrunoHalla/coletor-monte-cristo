@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#132c40">
+<meta name="description" content="Controle Safra - Coletor John Deere. Integração de dados agrícolas autorizados com o Operations Center, relatórios, mapas, planejamento e gestão de operações.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Controle Safra | Coletor John Deere">
+<meta property="og:description" content="Integração do Operations Center à gestão técnica e operacional da safra.">
+<link rel="canonical" href="https://www.controlesafra.com.br/coletor-johndeere/">
+<title>Controle Safra | Coletor John Deere</title>
+<style>
+:root{--navy:#132b3d;--navy2:#213f51;--green:#57784c;--sage:#d9e4d4;--orange:#e6aa63;--paper:#f5f7f4;--white:#fff;--text:#2b3b41;--mute:#64767b;--line:#dde5e1;--shadow:0 18px 45px rgba(18,43,61,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}a{color:inherit}.shell{width:min(1160px,calc(100% - 48px));margin-inline:auto}.ribbon{height:6px;background:linear-gradient(90deg,var(--navy) 0 47%,var(--green) 47% 80%,var(--orange) 80%)}.head{background:var(--navy);color:white;overflow:hidden}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.16)}.logo{display:flex;align-items:center;gap:13px;text-decoration:none;font-weight:800;font-size:20px;letter-spacing:-.04em}.mark{width:47px;height:47px;display:grid;place-items:center;background:var(--green);border-radius:12px;color:white;letter-spacing:-.06em;font-size:18px}.logo small{font-size:10px;text-transform:uppercase;letter-spacing:.16em;font-weight:750;color:#bdd0d7;display:block;margin-top:-3px}.links{display:flex;gap:24px;flex-wrap:wrap}.links a{font-size:13px;text-decoration:none;font-weight:700;color:#d0e0e1}.links a:hover,.links a:focus{color:var(--orange)}
+.hero{position:relative;display:grid;grid-template-columns:1.09fr .91fr;align-items:center;gap:62px;padding:84px 0 100px}.hero:after{content:"";position:absolute;width:530px;height:530px;right:-255px;top:-155px;background:radial-gradient(circle,rgba(230,170,99,.13),transparent 65%);pointer-events:none}.hero>*{position:relative;z-index:1}
+.kicker{font-size:11px;font-weight:850;letter-spacing:.17em;text-transform:uppercase;color:#aac8a8;margin:0 0 20px}.hero h1{font-size:clamp(45px,5.6vw,70px);line-height:1.07;letter-spacing:-.052em;margin:0;font-weight:800}.hero h1 span{color:#bad3b1}.hero p.lead{font-size:18px;line-height:1.75;color:#d1dfe5;max-width:640px;margin:24px 0 28px}.buttons{display:flex;gap:11px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;min-height:45px;padding:10px 19px;text-decoration:none;font-weight:780;font-size:13px;border-radius:9px}.primary{background:var(--orange);color:#152d3b}.secondary{border:1px solid rgba(255,255,255,.32);color:white}.hero-note{color:#aebfc6;font-size:12px;margin-top:25px}
+.visual{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);border-radius:20px;padding:13px;box-shadow:0 30px 60px rgba(0,0,0,.17);transform:rotate(-1.2deg)}.visual-screen{background:#fbfcfa;color:#243a47;border-radius:11px;overflow:hidden}.visual-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:white;border-bottom:1px solid #e4ebe7;font-weight:800;font-size:11px;letter-spacing:.07em}.dots{display:flex;gap:5px}.dots b{height:6px;width:6px;border-radius:50%;background:#8ca991}.dots b:nth-child(2){background:#d8b383}.dots b:nth-child(3){background:#a2b1bd}.metric-row{padding:16px 16px 10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.metric{border:1px solid #e1e7e1;border-radius:8px;padding:9px;background:#f6f9f5}.metric small{font-size:9px;color:#697d7b;display:block;line-height:1.1}.metric strong{display:block;font-size:13px;color:#2d5844;margin-top:5px}
+.geo{margin:6px 16px 0;border-radius:10px;overflow:hidden;border:1px solid #e2e8e2;background:#eaf0e6}.geo svg{display:block;width:100%;height:auto}.geo-foot{padding:10px 18px 18px;display:flex;flex-wrap:wrap;gap:13px;color:#668078;font-size:10px;font-weight:700}.geo-foot span::before{content:"";height:7px;width:7px;display:inline-block;margin-right:6px;border-radius:2px;background:#72936b}.geo-foot span:nth-child(2)::before{background:#dfb77c}.geo-foot span:nth-child(3)::before{background:#7c9aaf}.visual-caption{color:#bacacf;font-size:11px;text-align:right;margin:10px 5px}
+main{padding:86px 0 100px}.section-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-bottom:31px}.eyebrow{font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.16em;color:var(--green);margin:0 0 12px}h2{font-size:clamp(30px,3.8vw,45px);letter-spacing:-.04em;line-height:1.14;color:var(--navy);margin:0}.section-intro>p{font-size:17px;color:var(--mute);margin:18px 0 0;line-height:1.8}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.feature{background:white;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:16px;padding:27px 25px 30px}.feature .num{height:38px;width:38px;border-radius:10px;display:grid;place-items:center;background:#e9f0e6;color:#527149;font-size:12px;font-weight:900;letter-spacing:.03em;margin-bottom:21px}.feature h3{font-size:18px;color:var(--navy);margin:0 0 10px}.feature p{font-size:14px;color:var(--mute);line-height:1.76;margin:0}
+.flow-section{margin-top:86px;padding:44px 45px;background:var(--navy);color:white;border-radius:20px}.flow-section .eyebrow{color:#bad1b1}.flow-section h2{color:white;max-width:740px}.flow-section .desc{color:#cbdadd;max-width:840px;font-size:15px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}.step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:22px}.step>strong{color:#eed1aa;font-size:11px;letter-spacing:.14em}.step h3{font-size:16px;margin:10px 0 9px;color:white}.step p{color:#cad9dd;font-size:13px;margin:0;line-height:1.8}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:87px}.two-col p{font-size:16px;line-height:1.8;color:var(--mute)}.tags{display:grid;grid-template-columns:1fr 1fr;gap:11px}.tag{background:#fff;border-radius:10px;border:1px solid var(--line);font-size:13px;padding:15px;color:#405b56;font-weight:680}.tag:before{content:"";display:inline-block;margin-right:10px;height:7px;width:7px;background:var(--green);border-radius:50%}
+.privacy{margin-top:80px;padding:40px 42px;background:white;border:1px solid var(--line);border-radius:20px}.privacy h2{font-size:33px}.privacy>p{max-width:970px;color:var(--mute);font-size:15px}.privacy-grid{border-top:1px solid var(--line);margin-top:25px;padding-top:25px;display:grid;grid-template-columns:repeat(3,1fr);gap:23px}.privacy-grid h3{font-size:15px;color:var(--navy);margin:0 0 8px}.privacy-grid p{font-size:13px;color:var(--mute);margin:0;line-height:1.75}.legal{background:#e7ede9;border-top:1px solid #d7e1dc;padding:28px 0 36px}.legal-row{display:flex;align-items:start;justify-content:space-between;gap:25px;flex-wrap:wrap}.legal-row strong{color:var(--navy)}.legal-row small{display:block;margin-top:6px;font-size:12px;color:#617479;max-width:660px}.legal-row a{font-size:12px;color:#365949}
+@media(max-width:960px){.hero{gap:25px}.feature-grid{grid-template-columns:repeat(2,1fr)}.links{gap:12px}.links a{font-size:12px}}
+@media(max-width:730px){.shell{width:calc(100% - 32px)}.nav{flex-wrap:wrap;gap:12px}.links{width:100%;gap:16px;padding-bottom:6px}.hero,.section-intro,.two-col{grid-template-columns:1fr}.hero{padding:65px 0;gap:37px}.hero h1{font-size:clamp(41px,9vw,60px)}.visual{transform:none;max-width:570px}.section-intro{gap:8px}.steps,.privacy-grid{grid-template-columns:1fr}.flow-section{padding:30px 22px}.tags{grid-template-columns:1fr 1fr}.privacy{padding:27px 22px}}
+@media(max-width:460px){.feature-grid,.tags{grid-template-columns:1fr}.buttons .button{width:100%}.metric-row{gap:5px}.metric{padding:7px 5px}.metric strong{font-size:11px}.hero p.lead{font-size:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="ribbon"></div>
+<header class="head" id="inicio">
+ <div class="shell">
+  <nav class="nav" aria-label="Navegação principal">
+   <a href="#inicio" class="logo" aria-label="Controle Safra - início"><span class="mark" aria-hidden="true">CS</span><span>Controle Safra<small>Gestão agrícola integrada</small></span></a>
+   <div class="links"><a href="#solucao">Solução</a><a href="#integracao">Integração</a><a href="#recursos">Recursos</a><a href="#privacidade">Segurança e privacidade</a></div>
+  </nav>
+  <section class="hero">
+   <div>
+    <p class="kicker">Controle Safra / Integração agrícola</p>
+    <h1>Coletor<br><span>John Deere.</span></h1>
+    <p class="lead">Dados operacionais conectados à gestão da safra. Uma integração que transforma informações autorizadas do John Deere Operations Center em registros estruturados, mapas e relatórios para apoiar decisões agrícolas.</p>
+    <div class="buttons"><a class="button primary" href="#integracao">Conheça a integração</a><a class="button secondary" href="#recursos">Explore os recursos</a></div>
+    <p class="hero-note">Módulo de integração do Controle Safra · Acesso privado e autorizado.</p>
+   </div>
+   <div>
+    <div class="visual" aria-label="Ilustração conceitual de painel agrícola, sem dados operacionais reais">
+     <div class="visual-screen">
+      <div class="visual-bar"><span>CONTROLE SAFRA / OPERAÇÕES</span><span class="dots" aria-hidden="true"><b></b><b></b><b></b></span></div>
+      <div class="metric-row">
+       <div class="metric"><small>Integração</small><strong>Operations Center</strong></div>
+       <div class="metric"><small>Organização</small><strong>Safra e área</strong></div>
+       <div class="metric"><small>Resultados</small><strong>Mapas e PDFs</strong></div>
+      </div>
+      <div class="geo">
+       <svg viewBox="0 0 570 312" role="img" aria-label="Desenho ilustrativo de talhões e linhas de operações">
+        <defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#d1ddd0" stroke-width="1"/></pattern><pattern id="rows" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(31)"><path d="M0 0V11" stroke="#55784d" stroke-width="2" opacity=".43"/></pattern><pattern id="rows2" width="13" height="13" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)"><path d="M0 0V13" stroke="#ae8353" stroke-width="2" opacity=".35"/></pattern></defs>
+        <rect width="570" height="312" fill="#ebf1e8"/><rect width="570" height="312" fill="url(#grid)"/>
+        <path d="M-20 70C121 125 178 18 307 65S490 113 580 36" stroke="#f9fbf8" stroke-width="15" fill="none"/>
+        <path d="M-12 257C115 210 205 252 316 210S477 225 580 198" stroke="#f9fbf8" stroke-width="16" fill="none"/>
+        <path d="M61 47L236 69L210 177L95 203L39 140Z" fill="#a2b99a" stroke="white" stroke-width="5"/><path d="M61 47L236 69L210 177L95 203L39 140Z" fill="url(#rows)"/>
+        <path d="M256 71L411 38L506 126L447 203L267 185Z" fill="#e5c693" stroke="white" stroke-width="5"/><path d="M256 71L411 38L506 126L447 203L267 185Z" fill="url(#rows2)"/>
+        <path d="M96 214L211 189L288 238L242 293L129 281Z" fill="#98b2c4" stroke="white" stroke-width="5"/>
+        <path d="M301 236L449 216L504 277L345 291Z" fill="#b2c8a6" stroke="white" stroke-width="5"/>
+        <g fill="#426649" font-size="14" font-family="Arial,sans-serif" font-weight="700"><text x="104" y="130">ÁREA 01</text><text fill="#775e39" x="339" y="127">ÁREA 02</text><text fill="#426078" x="151" y="246">ÁREA 03</text></g>
+        <path d="M105 171C155 135 173 128 195 91" stroke="#3a7655" stroke-width="3" fill="none" stroke-dasharray="8 5"/>
+        <circle cx="105" cy="171" r="5" fill="#2f755c" stroke="white" stroke-width="2"/><circle cx="195" cy="91" r="5" fill="#2f755c" stroke="white" stroke-width="2"/>
+       </svg>
+      </div>
+      <div class="geo-foot"><span>Limites de áreas</span><span>Operações</span><span>Relatórios</span></div>
+     </div>
+    </div>
+    <div class="visual-caption">Visualização conceitual, sem utilização de dados reais</div>
+   </div>
+  </section>
+ </div>
+</header>
+<main>
+ <div class="shell">
+  <section id="solucao" aria-labelledby="solucao-title">
+   <div class="section-intro"><div><p class="eyebrow">A solução</p><h2 id="solucao-title">Informação agrícola com contexto e rastreabilidade.</h2></div><p>O Controle Safra reúne módulos Desktop e Web para organizar o ciclo produtivo. O Coletor John Deere integra esse ambiente às informações operacionais disponíveis, respeitando o acesso autorizado da organização.</p></div>
+   <div class="feature-grid">
+    <article class="feature"><div class="num">01</div><h3>Plantio e colheita</h3><p>Consulta e organização de operações de campo, incluindo períodos, áreas, equipamentos e informações agronômicas.</p></article>
+    <article class="feature"><div class="num">02</div><h3>Adubação e aplicações</h3><p>Consolidação de informações sobre atividades realizadas, com relacionamento a culturas, safras e áreas cadastradas.</p></article>
+    <article class="feature"><div class="num">03</div><h3>Mapas operacionais</h3><p>Processamento de arquivos e registros georreferenciados para representação das operações por área e máquina.</p></article>
+    <article class="feature"><div class="num">04</div><h3>Relatórios técnicos</h3><p>Emissão de documentos e resumos operacionais, com dados organizados para análise e acompanhamento da safra.</p></article>
+    <article class="feature"><div class="num">05</div><h3>Planejamento via Work Plans</h3><p>Preparação e envio de informações de planejamento por meio de recursos autorizados da plataforma John Deere.</p></article>
+    <article class="feature"><div class="num">06</div><h3>Máquinas e áreas</h3><p>Conciliação de identificações, culturas, áreas e equipamentos com os cadastros internos do Controle Safra.</p></article>
+   </div>
+  </section>
+  <section class="flow-section" id="integracao">
+   <p class="eyebrow">Como funciona</p><h2>Da informação de campo ao relatório da safra.</h2>
+   <p class="desc">O módulo utiliza as interfaces autorizadas do Operations Center. A disponibilidade de dados e ações depende das APIs habilitadas, dos permissões concedidas e da configuração da organização conectada.</p>
+   <div class="steps">
+    <article class="step"><strong>01 / AUTORIZAR</strong><h3>Conexão controlada</h3><p>A organização concede acesso aos recursos necessários por meio do fluxo de autenticação previsto pela plataforma.</p></article>
+    <article class="step"><strong>02 / INTEGRAR</strong><h3>Coleta e validação</h3><p>Operações, equipamentos, áreas e arquivos são consultados e relacionados aos cadastros de cultura, safra e área.</p></article>
+    <article class="step"><strong>03 / CONSOLIDAR</strong><h3>Mapas e relatórios</h3><p>Os registros alimentam processos de geração de mapas, relatórios técnicos e acompanhamento operacional.</p></article>
+   </div>
+  </section>
+  <section class="two-col" id="recursos">
+   <div><p class="eyebrow">Ecossistema Controle Safra</p><h2>Integração com processos já utilizados na gestão agrícola.</h2><p>O sistema inclui módulos de inspeções, operações, planejamento, cadastro de áreas, movimentação de máquinas, análises por safra e relatórios. O Coletor funciona como uma ponte entre as fontes técnicas de dados e essas rotinas de gestão.</p><p>Há funcionalidades em evolução e homologação. Nem todos os recursos são disponibilizados ao mesmo tempo para todas as organizações ou equipamentos.</p></div>
+   <div class="tags" aria-label="Áreas de atuação"><div class="tag">Field Operations</div><div class="tag">Fields e Boundaries</div><div class="tag">Equipment</div><div class="tag">Files e Work Plans</div><div class="tag">Plantio e colheita</div><div class="tag">Aplicações e adubação</div><div class="tag">Georreferenciamento</div><div class="tag">PDFs e relatórios</div></div>
+  </section>
+  <section class="privacy" id="privacidade">
+   <p class="eyebrow">Privacidade e responsabilidade</p><h2>Integração privada. Dados sob acesso autorizado.</h2>
+   <p>Esta é uma página institucional. O Coletor John Deere é um componente do Controle Safra, utilizado por organizações previamente autorizadas. Não disponibilizamos aqui cadastro público, credenciais de integração, dados agronômicos ou acesso aos bancos de dados.</p>
+   <div class="privacy-grid">
+    <article><h3>Finalidade específica</h3><p>Uso de dados operacionais para organização, integração e análise agrícola nos processos do Controle Safra.</p></article>
+    <article><h3>Autorização e permissões</h3><p>O acesso a serviços da John Deere está condicionado à autenticação, às permissões das APIs e à organização conectada.</p></article>
+    <article><h3>Integração independente</h3><p>Controle Safra é um software independente. A referência à John Deere indica compatibilidade de integração, não afiliação ou endosso comercial.</p></article>
+   </div>
+  </section>
+ </div>
+</main>
+<footer class="legal">
+ <div class="shell legal-row">
+  <div><strong>Controle Safra</strong><small>© 2026 · Coletor John Deere · Solução para integração e gestão agrícola.</small><small>John Deere, Operations Center e Work Plans são denominações de seus respectivos titulares.</small></div>
+  <a href="#inicio">Voltar ao início</a>
+ </div>
+</footer>
+</body>
+</html>
