@@ -1,390 +1,215 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Coletor Monte Cristo — aplicação privada de uso interno da Fazenda Monte Cristo para integração e análise de dados agrícolas." />
-  <meta name="robots" content="index,follow" />
-  <title>Coletor Monte Cristo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b40">
+  <meta name="description" content="Controle Safra: gestão agrícola, mapas, relatórios, inspeções e integração autorizada com o John Deere Operations Center para a Fazenda Monte Cristo.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Controle Safra | Gestão e inteligência agrícola">
+  <meta property="og:description" content="Plataforma de gestão agrícola e Coletor John Deere para organização e análise de dados de safra.">
+  <meta property="og:locale" content="pt_BR">
+  <title>Controle Safra | Gestão e inteligência agrícola</title>
   <style>
-    :root {
-      --navy: #12253a;
-      --navy-2: #1a3550;
-      --green: #536b3f;
-      --green-soft: #eef2ea;
-      --orange: #d49b54;
-      --text: #24313c;
-      --muted: #687783;
-      --line: #dce3e7;
-      --bg: #f7f8f6;
-      --white: #ffffff;
-      --shadow: 0 16px 42px rgba(18, 37, 58, 0.10);
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.65;
-    }
-
-    a { color: inherit; }
-
-    .topbar {
-      height: 6px;
-      background: linear-gradient(90deg, var(--navy) 0 50%, var(--green) 50% 82%, var(--orange) 82% 100%);
-    }
-
-    header {
-      background:
-        radial-gradient(circle at 86% 12%, rgba(212, 155, 84, 0.18), transparent 24rem),
-        linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
-      color: var(--white);
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 22px 0;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      letter-spacing: .02em;
-    }
-
-    .mark {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      color: #fff;
-      background: rgba(255,255,255,.06);
-    }
-
-    .status {
-      font-size: 13px;
-      color: rgba(255,255,255,.78);
-      border: 1px solid rgba(255,255,255,.22);
-      border-radius: 999px;
-      padding: 7px 12px;
-      white-space: nowrap;
-    }
-
-    .hero {
-      padding: 78px 0 92px;
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 56px;
-      align-items: end;
-    }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: #cbd8bf;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.02;
-      letter-spacing: -.045em;
-      font-weight: 760;
-    }
-
-    .hero p {
-      margin: 24px 0 0;
-      max-width: 760px;
-      color: rgba(255,255,255,.84);
-      font-size: clamp(17px, 2vw, 20px);
-    }
-
-    .hero-note {
-      border-left: 3px solid var(--orange);
-      padding: 4px 0 4px 20px;
-      color: rgba(255,255,255,.76);
-      font-size: 14px;
-    }
-
-    main { padding: 70px 0 84px; }
-
-    .intro {
-      display: grid;
-      grid-template-columns: .82fr 1.18fr;
-      gap: 60px;
-      align-items: start;
-      margin-bottom: 56px;
-    }
-
-    .section-label {
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(29px, 4vw, 44px);
-      line-height: 1.12;
-      letter-spacing: -.025em;
-    }
-
-    .intro-copy p {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin: 0 0 56px;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 26px;
-      box-shadow: var(--shadow);
-    }
-
-    .card-number {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      display: grid;
-      place-items: center;
-      background: var(--green-soft);
-      color: var(--green);
-      font-weight: 800;
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-
-    .card h3 {
-      color: var(--navy);
-      margin: 0 0 9px;
-      font-size: 18px;
-    }
-
-    .card p {
-      color: var(--muted);
-      margin: 0;
-      font-size: 15px;
-    }
-
-    .scope {
-      background: var(--navy);
-      color: var(--white);
-      border-radius: 18px;
-      padding: 34px;
-      display: grid;
-      grid-template-columns: 1fr 1.35fr;
-      gap: 36px;
-      align-items: center;
-      margin-bottom: 56px;
-    }
-
-    .scope h2 { color: var(--white); font-size: 30px; }
-    .scope p { color: rgba(255,255,255,.72); margin: 12px 0 0; }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: flex-start;
-    }
-
-    .chip {
-      border: 1px solid rgba(255,255,255,.20);
-      background: rgba(255,255,255,.06);
-      border-radius: 999px;
-      padding: 9px 13px;
-      color: rgba(255,255,255,.90);
-      font-size: 14px;
-    }
-
-    .privacy {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 32px;
-    }
-
-    .privacy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 22px;
-    }
-
-    .privacy h3 {
-      margin: 0 0 7px;
-      font-size: 17px;
-      color: var(--navy);
-    }
-
-    .privacy p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 26px 0 34px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 820px) {
-      .hero, .intro, .scope, .privacy-grid { grid-template-columns: 1fr; }
-      .hero { padding: 56px 0 68px; gap: 28px; }
-      .intro { gap: 26px; }
-      .cards { grid-template-columns: 1fr; }
-      .scope { padding: 26px; }
-      .status { display: none; }
-    }
+    :root{--navy:#142b40;--navy2:#1d3e55;--green:#536c45;--green2:#758965;--orange:#e3ae6a;--paper:#f5f7f5;--ink:#243543;--muted:#60717a;--line:#e1e7e5;--white:#fff}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:inherit}
+    .container{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+    .stripe{height:6px;background:linear-gradient(90deg,var(--navy) 0 46%,var(--green) 46% 80%,var(--orange) 80%)}
+    .top{background:var(--navy);color:white}
+    .navigation{min-height:86px;display:flex;justify-content:space-between;align-items:center;gap:28px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .identity{display:flex;align-items:center;gap:13px;text-decoration:none}
+    .identity-mark{height:44px;width:44px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#759067,#47613e);font-weight:850;letter-spacing:-.07em;color:white;box-shadow:0 6px 22px rgba(0,0,0,.16)}
+    .identity-text{display:flex;flex-direction:column;line-height:1.2}
+    .identity-text strong{font-size:19px;letter-spacing:-.035em}
+    .identity-text small{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#bbc9ce;margin-top:4px}
+    .navigation-links{display:flex;flex-wrap:wrap;gap:28px}
+    .navigation-links a{text-decoration:none;color:#d8e0e4;font-size:14px;font-weight:650}
+    .navigation-links a:hover,.navigation-links a:focus-visible{color:var(--orange)}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;padding:96px 0 106px;position:relative}
+    .hero::before{content:"";position:absolute;z-index:0;pointer-events:none;inset:-10px -120px 0 auto;width:500px;background:radial-gradient(circle,rgba(227,174,106,.13),transparent 64%)}
+    .hero>*{position:relative;z-index:1}
+    .eyebrow{font-size:12px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:#c7d8bd;margin:0 0 21px}
+    h1{font-size:clamp(46px,5.7vw,77px);font-weight:780;line-height:1.06;letter-spacing:-.055em;margin:0;max-width:670px}
+    .hero h1 em{color:#b2c4a7;font-style:normal}
+    .hero-description{font-size:19px;line-height:1.75;color:#d5dfe4;max-width:610px;margin:26px 0 27px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .cta{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:11px 20px;text-decoration:none;border-radius:10px;font-size:14px;font-weight:750;transition:transform .15s}
+    .cta:hover{transform:translateY(-2px)}
+    .cta-primary{background:var(--orange);color:var(--navy)}
+    .cta-secondary{border:1px solid rgba(255,255,255,.28);color:white}
+    .hero-scope{font-size:13px;color:#adbfc8;margin-top:27px}
+    .dashboard{border:1px solid rgba(255,255,255,.21);border-radius:20px;padding:14px;background:rgba(255,255,255,.07);box-shadow:0 26px 55px rgba(0,0,0,.16);transform:rotate(-1deg)}
+    .dashboard-inner{background:#f9faf8;color:#243543;border-radius:12px;overflow:hidden}
+    .dash-head{padding:13px 17px;border-bottom:1px solid #e4e9e6;display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;font-weight:750}
+    .lights{display:flex;gap:5px}.lights i{height:6px;width:6px;display:block;border-radius:50%;background:#9cb09c}
+    .lights i:nth-child(2){background:#d9ad77}.lights i:nth-child(3){background:#8ca0ac}
+    .dash-meta{display:flex;gap:9px;padding:14px 16px 4px;flex-wrap:wrap}
+    .dash-pill{font-size:10px;font-weight:750;background:#e9efe8;border:1px solid #dbe4d9;color:#516650;border-radius:20px;padding:5px 9px}
+    .map-preview{margin:12px 16px 14px;background:#ecf0e9;border:1px solid #dfe6dc;border-radius:9px;overflow:hidden}
+    .map-preview svg{width:100%;height:auto;display:block}
+    .dash-footer{padding:0 16px 17px;display:flex;gap:11px;align-items:center;flex-wrap:wrap;color:#556775;font-size:11px}
+    .legend{display:inline-flex;align-items:center;gap:5px}.legend b{display:inline-block;height:9px;width:9px;border-radius:3px;background:#779666}
+    .legend:nth-child(2) b{background:#e0b578}.legend:nth-child(3) b{background:#7695a8}
+    .preview-label{color:#b6c5c9;font-size:11px;text-align:right;margin:11px 4px 1px}
+    main{padding:88px 0 100px}
+    .section-heading{display:grid;grid-template-columns:.86fr 1.14fr;gap:70px;align-items:start;margin-bottom:33px}
+    .kicker{font-size:12px;letter-spacing:.15em;font-weight:800;text-transform:uppercase;color:var(--green);margin:0 0 14px}
+    h2{font-size:clamp(31px,3.8vw,45px);line-height:1.16;letter-spacing:-.04em;color:var(--navy);margin:0}
+    .section-heading p:last-child{font-size:17px;color:var(--muted);line-height:1.8;margin:25px 0 0}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:30px 0 100px}
+    .card{background:white;border:1px solid var(--line);border-radius:17px;padding:27px 23px 30px;box-shadow:0 12px 28px rgba(15,40,50,.04)}
+    .card-icon{width:43px;height:43px;border-radius:12px;background:#edf1e9;color:#506a41;display:grid;place-items:center;font-size:17px;font-weight:850;margin-bottom:19px}
+    .card h3{font-size:18px;line-height:1.3;color:var(--navy);margin:0 0 11px}
+    .card p{font-size:14px;line-height:1.7;color:var(--muted);margin:0}
+    .collector{background:var(--navy);color:#e8eef0;border-radius:24px;padding:56px;position:relative;overflow:hidden}
+    .collector::after{content:"";position:absolute;inset:-230px -260px auto auto;width:580px;height:580px;border:1px solid rgba(255,255,255,.06);border-radius:50%;pointer-events:none}
+    .collector-head{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:center}
+    .collector .kicker{color:#b7ccae}
+    .collector h2{color:#fff;font-size:clamp(33px,3.5vw,49px)}
+    .collector-intro{font-size:16px;line-height:1.85;color:#cfdae0;margin:0}
+    .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+    .flow article{border:1px solid rgba(255,255,255,.17);border-radius:14px;padding:24px;background:rgba(255,255,255,.055)}
+    .flow .number{font-size:12px;color:#eed1a8;font-weight:800;letter-spacing:.14em}
+    .flow h3{font-size:17px;margin:11px 0 9px;color:white}
+    .flow p{font-size:14px;color:#d0dce0;margin:0;line-height:1.75}
+    .collector-note{font-size:12px;color:#afc2c9;margin:24px 0 0}
+    .capabilities{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin:97px 0}
+    .capabilities .lead{color:var(--muted);font-size:16px;line-height:1.8}
+    .data-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .data-list li{background:white;border:1px solid var(--line);padding:14px 17px;border-radius:11px;display:flex;gap:12px;color:#405461;font-size:14px}
+    .data-list li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);margin-top:8px;flex-shrink:0}
+    .privacy{border-radius:21px;border:1px solid var(--line);background:#fff;padding:42px}
+    .privacy-head{max-width:790px}
+    .privacy-head p:last-child{color:var(--muted);font-size:16px;line-height:1.85}
+    .privacy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:25px;padding-top:30px;border-top:1px solid var(--line)}
+    .privacy-grid h3{font-size:16px;margin:0 0 8px;color:var(--navy)}
+    .privacy-grid p{font-size:14px;line-height:1.76;margin:0;color:var(--muted)}
+    footer{background:#eaf0ed;border-top:1px solid #d8e2dc;padding:30px 0 38px}
+    .footer-flex{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}
+    .footer-flex strong{color:var(--navy)}
+    .footer-flex p{margin:5px 0 0;font-size:12px;color:#60747a}
+    .footer-flex small{font-size:12px;color:#52666c;max-width:410px;text-align:right}
+    @media(max-width:1000px){.hero{grid-template-columns:1fr 1fr;gap:30px}.cards{grid-template-columns:repeat(2,1fr)}.collector-head{gap:24px}.navigation-links{gap:15px}}
+    @media(max-width:780px){.container{width:min(100% - 32px,560px)}.navigation{flex-wrap:wrap;padding:15px 0}.navigation-links{width:100%;gap:19px;padding-bottom:7px}.hero,.section-heading,.collector-head,.capabilities{grid-template-columns:1fr}.hero{padding:65px 0;gap:38px}.hero-description{font-size:17px}.dashboard{transform:none;max-width:560px}.cards{margin-bottom:65px}.collector{padding:33px 25px}.flow{grid-template-columns:1fr}.capabilities{margin:65px 0}.privacy{padding:28px 22px}.privacy-grid{grid-template-columns:1fr}.footer-flex small{text-align:left}}
+    @media(max-width:470px){.navigation-links{font-size:12px;gap:13px}.navigation-links a{font-size:12px}.cards{grid-template-columns:1fr}.hero h1{font-size:47px}.cta{width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cta{transition:none}}
   </style>
 </head>
 <body>
-  <div class="topbar"></div>
-
-  <header>
+  <div class="stripe"></div>
+  <header class="top" id="inicio">
     <div class="container">
-      <nav class="nav" aria-label="Principal">
-        <div class="brand">
-          <div class="mark" aria-hidden="true">MC</div>
-          <span>Coletor Monte Cristo</span>
+      <nav class="navigation" aria-label="Navegação principal">
+        <a class="identity" href="#inicio" aria-label="Controle Safra — início">
+          <span class="identity-mark" aria-hidden="true">CS</span>
+          <span class="identity-text"><strong>Controle Safra</strong><small>Gestão agrícola integrada</small></span>
+        </a>
+        <div class="navigation-links">
+          <a href="#plataforma">Plataforma</a>
+          <a href="#coletor">Coletor John Deere</a>
+          <a href="#dados">Dados agrícolas</a>
+          <a href="#privacidade">Privacidade</a>
         </div>
-        <div class="status">Aplicação privada · uso interno</div>
       </nav>
-
-      <section class="hero">
+      <section class="hero" aria-labelledby="hero-title">
         <div>
-          <p class="eyebrow">Integração agrícola de uso interno</p>
-          <h1>Coletor<br>Monte Cristo</h1>
-          <p>
-            Aplicação privada desenvolvida exclusivamente para os processos internos da Fazenda Monte Cristo,
-            com foco na integração, organização e análise de dados de operações agrícolas.
-          </p>
+          <p class="eyebrow">Tecnologia aplicada à gestão da safra</p>
+          <h1 id="hero-title">O campo em dados.<br><em>A safra em perspectiva.</em></h1>
+          <p class="hero-description">O Controle Safra reúne cadastros, operações agrícolas, inspeções, mapas e relatórios técnicos em uma estrutura de gestão integrada, com rastreabilidade por cultura, safra, área e equipamento.</p>
+          <div class="hero-actions">
+            <a class="cta cta-primary" href="#plataforma">Conheça a plataforma</a>
+            <a class="cta cta-secondary" href="#coletor">Integração John Deere</a>
+          </div>
+          <p class="hero-scope">Sistema privado utilizado na operação agrícola da Fazenda Monte Cristo.</p>
         </div>
-        <div class="hero-note">
-          Projeto de integração em desenvolvimento para uso exclusivo da Fazenda Monte Cristo. Não é um produto comercial e não está disponível para cadastro público.
+        <div>
+          <div class="dashboard" aria-label="Representação ilustrativa de painel de monitoramento agrícola">
+            <div class="dashboard-inner">
+              <div class="dash-head"><span>CONTROLE SAFRA / VISÃO DE OPERAÇÕES</span><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span></div>
+              <div class="dash-meta"><span class="dash-pill">Áreas e limites</span><span class="dash-pill">Mapeamento de safra</span><span class="dash-pill">Operações</span></div>
+              <div class="map-preview">
+                <svg viewBox="0 0 520 300" role="img" aria-label="Mapa conceitual de talhões agrícolas">
+                  <defs>
+                    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#cfd9cf" stroke-width=".7"/></pattern>
+                    <pattern id="rows" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(27)"><path d="M0 0V15" stroke="#466d46" stroke-opacity=".22" stroke-width="3"/></pattern>
+                    <pattern id="rows2" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(42)"><path d="M0 0V12" stroke="#ae8351" stroke-opacity=".25" stroke-width="2"/></pattern>
+                  </defs>
+                  <rect width="520" height="300" fill="#eaf0e6"/><rect width="520" height="300" fill="url(#grid)"/>
+                  <path d="M0 67C98 93 158 23 270 57S440 110 520 45" fill="none" stroke="#dce5da" stroke-width="18"/>
+                  <path d="M19 253C125 203 214 256 313 205S439 193 520 240" fill="none" stroke="#f7f9f6" stroke-width="17"/>
+                  <path d="M65 48L220 70L199 169L85 198L37 146Z" fill="#a0b89a" stroke="#fff" stroke-width="5"/>
+                  <path d="M65 48L220 70L199 169L85 198L37 146Z" fill="url(#rows)"/>
+                  <path d="M245 76L395 39L466 109L420 202L258 177Z" fill="#eac792" stroke="#fff" stroke-width="5"/>
+                  <path d="M245 76L395 39L466 109L420 202L258 177Z" fill="url(#rows2)"/>
+                  <path d="M92 215L222 182L276 216L232 284L119 275Z" fill="#92aebc" stroke="#fff" stroke-width="5"/>
+                  <path d="M301 218L421 215L468 270L350 287Z" fill="#a8bd9b" stroke="#fff" stroke-width="5"/>
+                  <g font-family="sans-serif" font-size="14" font-weight="700" fill="#294a34"><text x="108" y="127">ÁREA A</text><text x="325" y="126" fill="#70583a">ÁREA B</text><text x="152" y="242" fill="#355a6c">ÁREA C</text></g>
+                  <g transform="translate(455 17)"><rect x="0" y="0" width="49" height="35" rx="8" fill="#fff" opacity=".90"/><path d="M25 8V27M16 18H34" stroke="#718b74" stroke-width="1.5"/></g>
+                </svg>
+              </div>
+              <div class="dash-footer"><span class="legend"><b></b>Áreas</span><span class="legend"><b></b>Operações</span><span class="legend"><b></b>Mapas</span></div>
+            </div>
+          </div>
+          <p class="preview-label">Visualização conceitual · não representa dados reais da fazenda</p>
         </div>
       </section>
     </div>
   </header>
-
   <main>
     <div class="container">
-      <section class="intro">
-        <div>
-          <div class="section-label">Sobre a aplicação</div>
-          <h2>Dados de campo organizados para análise e gestão.</h2>
+      <section id="plataforma" aria-labelledby="plataforma-titulo">
+        <div class="section-heading">
+          <div><p class="kicker">A plataforma</p><h2 id="plataforma-titulo">Informações integradas, do planejamento à análise.</h2></div>
+          <p>O Controle Safra organiza processos agrícolas e relaciona registros de diferentes etapas da produção. O objetivo é facilitar a consulta, comparação e documentação técnica das atividades da fazenda.</p>
         </div>
-        <div class="intro-copy">
-          <p>
-            O Coletor Monte Cristo foi concebido para integrar dados autorizados do John Deere Operations Center aos sistemas internos de gestão e análise agronômica da Fazenda Monte Cristo.
-          </p>
-          <p>
-            A finalidade é consolidar informações provenientes das operações realizadas no campo, mantendo rastreabilidade, organização histórica e suporte à geração de análises técnicas da safra.
-          </p>
+        <div class="cards">
+          <article class="card"><div class="card-icon" aria-hidden="true">01</div><h3>Safras e áreas</h3><p>Cadastro de culturas, variedades, áreas, limites geográficos e histórico das safras.</p></article>
+          <article class="card"><div class="card-icon" aria-hidden="true">02</div><h3>Operações de campo</h3><p>Acompanhamento de plantio, colheita, adubação e aplicações, com vínculo aos registros operacionais.</p></article>
+          <article class="card"><div class="card-icon" aria-hidden="true">03</div><h3>Inspeções e registros</h3><p>Organização de inspeções agrícolas, informações de campo e pontos georreferenciados.</p></article>
+          <article class="card"><div class="card-icon" aria-hidden="true">04</div><h3>Mapas e relatórios</h3><p>Consolidação de dados por área e período, com mapas, indicadores e relatórios para análise agronômica.</p></article>
         </div>
       </section>
-
-      <section class="cards" aria-label="Finalidades">
-        <article class="card">
-          <div class="card-number">01</div>
-          <h3>Coleta autorizada</h3>
-          <p>Consulta de informações agrícolas mediante autenticação e autorização da organização responsável pelos dados.</p>
-        </article>
-        <article class="card">
-          <div class="card-number">02</div>
-          <h3>Organização interna</h3>
-          <p>Estruturação de dados de operações, áreas, máquinas e informações georreferenciadas para uso interno da fazenda.</p>
-        </article>
-        <article class="card">
-          <div class="card-number">03</div>
-          <h3>Análise agronômica</h3>
-          <p>Suporte à elaboração de mapas, históricos e relatórios técnicos para acompanhamento das diferentes etapas da safra.</p>
-        </article>
-      </section>
-
-      <section class="scope">
-        <div>
-          <div class="section-label" style="color:#cbd8bf">Escopo planejado</div>
-          <h2>Operações agrícolas</h2>
-          <p>O acesso efetivo depende das permissões concedidas no John Deere Operations Center e das APIs disponibilizadas à aplicação.</p>
+      <section class="collector" id="coletor" aria-labelledby="coletor-titulo">
+        <div class="collector-head">
+          <div><p class="kicker">Integração operacional</p><h2 id="coletor-titulo">Controle Safra — Coletor John Deere</h2></div>
+          <p class="collector-intro">Componente de integração que utiliza APIs autorizadas do John Deere Operations Center para obter informações relevantes das operações agrícolas e relacioná-las ao cadastro interno de culturas, safras, áreas e equipamentos. O desenvolvimento é contínuo e a disponibilidade de cada recurso depende das permissões da organização e das APIs correspondentes.</p>
         </div>
-        <div class="chips" aria-label="Tipos de dados">
-          <span class="chip">Plantio</span>
-          <span class="chip">Colheita</span>
-          <span class="chip">Aplicações</span>
-          <span class="chip">Máquinas</span>
-          <span class="chip">Áreas e limites</span>
-          <span class="chip">Dados georreferenciados</span>
-          <span class="chip">Mapas operacionais</span>
-          <span class="chip">Histórico da safra</span>
+        <div class="flow" aria-label="Etapas de integração">
+          <article><span class="number">ETAPA 01</span><h3>Autorização</h3><p>Conexão à organização agrícola com autenticação apropriada e permissões específicas concedidas no ambiente John Deere.</p></article>
+          <article><span class="number">ETAPA 02</span><h3>Coleta e estruturação</h3><p>Consulta e organização de informações de operações, máquinas, áreas, arquivos e registros georreferenciados.</p></article>
+          <article><span class="number">ETAPA 03</span><h3>Consolidação técnica</h3><p>Relacionamento dos dados à safra e geração progressiva de mapas e relatórios para acompanhamento agronômico.</p></article>
         </div>
+        <p class="collector-note">Integração independente de uso interno. A aplicação não é um produto oficial da John Deere nem afirma endosso ou parceria comercial com a marca.</p>
       </section>
-
-      <section class="privacy">
-        <div class="section-label">Privacidade e uso</div>
-        <h2>Aplicação restrita à Fazenda Monte Cristo</h2>
+      <section class="capabilities" id="dados" aria-labelledby="dados-titulo">
+        <div><p class="kicker">Dados e análises</p><h2 id="dados-titulo">Histórico técnico vinculado à realidade de cada área.</h2><p class="lead">O projeto contempla a consolidação de dados operacionais provenientes de fontes internas e de plataformas autorizadas. Recursos de integração e relatórios são implementados e validados gradualmente.</p></div>
+        <ul class="data-list">
+          <li>Operações de plantio, colheita e adubação</li>
+          <li>Identificação de máquinas, equipamentos e períodos de execução</li>
+          <li>Áreas agrícolas, limites, culturas, variedades e safras</li>
+          <li>Arquivos de campo e informações georreferenciadas</li>
+          <li>Mapas de operações e relatórios técnicos por área</li>
+          <li>Históricos e comparativos para gestão agronômica</li>
+        </ul>
+      </section>
+      <section class="privacy" id="privacidade" aria-labelledby="privacidade-titulo">
+        <div class="privacy-head"><p class="kicker">Uso responsável dos dados</p><h2 id="privacidade-titulo">Acesso restrito e finalidade definida.</h2><p>O Controle Safra e seu Coletor John Deere foram concebidos para apoiar processos internos da Fazenda Monte Cristo. Esta página é institucional e não oferece acesso público à aplicação ou aos dados da operação.</p></div>
         <div class="privacy-grid">
-          <div>
-            <h3>Uso não comercial</h3>
-            <p>O Coletor Monte Cristo é destinado exclusivamente aos processos internos da Fazenda Monte Cristo e não é oferecido, licenciado ou comercializado ao público.</p>
-          </div>
-          <div>
-            <h3>Controle de acesso</h3>
-            <p>O acesso a dados externos depende de autenticação e autorização apropriadas. A aplicação não solicita a publicação pública dos dados agrícolas da fazenda.</p>
-          </div>
+          <div><h3>Aplicação privada</h3><p>Ferramenta interna, não disponibilizada para cadastro ou contratação pelo público.</p></div>
+          <div><h3>Autorização de acesso</h3><p>A integração com plataformas externas requer a autorização da organização responsável e está sujeita às permissões disponíveis.</p></div>
+          <div><h3>Informações operacionais</h3><p>O tratamento de dados visa organização e análise agronômica, sem exposição pública de informações da fazenda nesta página.</p></div>
         </div>
       </section>
     </div>
   </main>
-
   <footer>
-    <div class="container footer-row">
-      <span>© 2026 Coletor Monte Cristo · Fazenda Monte Cristo</span>
-      <span>Aplicação privada de uso interno</span>
+    <div class="container footer-flex">
+      <div><strong>Controle Safra</strong><p>© 2026 · Fazenda Monte Cristo · Aplicação privada de uso interno.</p></div>
+      <small>John Deere e Operations Center são marcas de seus respectivos titulares. Integração independente.</small>
     </div>
   </footer>
 </body>
